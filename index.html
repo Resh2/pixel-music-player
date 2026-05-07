@@ -3,54 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pixel Music Player - Enhanced</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Pixel Music Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffc0e8 0%, #d9f4ff 50%, #fff4c9 100%);
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: gradientShift 8s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .landing-container {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .logo {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #2d3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #5a6c7d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .description {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 3px solid #2d3e50;
+            font-size: 14px;
+            color: #2d3e50;
+            line-height: 1.6;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 12px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ff69d9;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .launch-btn {
+            background: linear-gradient(145deg, #ff69d9, #ff1493);
+            border: 4px solid #2d3e50;
+            border-radius: 15px;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .launch-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .launch-btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #5a6c7d;
+        }
+
+        .github-link {
+            color: #ff69d9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .logo {
+                font-size: 60px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .launch-btn {
+                padding: 14px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="theme-toggle" id="themeToggle">🌙</div>
+    <div class="landing-container">
+        <div class="logo">🎮🎵</div>
+        <h1>PIXEL MUSIC</h1>
+        <h1>PLAYER</h1>
+        <p class="subtitle">Retro-Inspired Audio Experience</p>
 
-    <div class="player-container">
-        <div class="header">🎵 PIXEL MUSIC PLAYER 🎵</div>
-
-        <!-- SCREEN (for song display) -->
-        <div id="screen" class="screen no-song"></div>
-
-        <!-- PROGRESS BAR -->
-        <div class="progress-container">
-            <input type="range" id="progressBar" min="0" max="100" value="0">
+        <div class="description">
+            A nostalgic 8-bit styled music player with dark mode, playlist management, and touch gestures. Perfect for all your audio needs!
         </div>
 
-        <!-- CONTROLS -->
-        <div class="controls">
-            <button id="prevBtn" class="btn-skip" disabled>◀ PREV</button>
-            <button id="playBtn" class="btn-play" disabled>▶ PLAY</button>
-            <button id="nextBtn" class="btn-skip" disabled>NEXT ►►</button>
-        </div>
-
-        <!-- VOLUME CONTROL -->
-        <div class="volume-control">
-            <span>VOL:</span>
-            <input type="range" id="volumeControl" min="0" max="100" value="70">
-            <span class="volume-percent"><span id="volumePercent">70</span>%</span>
-        </div>
-
-        <!-- UPLOAD SONGS -->
-        <label class="upload-label">
-            ♫ ADD SONGS ♫
-            <input type="file" id="fileInput" multiple accept="audio/*,video/mp4">
-        </label>
-
-        <!-- PLAYLIST -->
-        <div class="playlist">
-            <div class="playlist-header">♪ PLAYLIST (<span id="playlistCount">0</span>/10) ♪</div>
-            <div id="playlistContainer">
-                <div class="playlist-empty">No songs yet</div>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <div>Retro Design</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌙</div>
+                <div>Dark Mode</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div>Mobile Ready</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👆</div>
+                <div>Touch Gestures</div>
             </div>
         </div>
+
+        <a href="player.html" class="launch-btn">▶ LAUNCH PLAYER ◀</a>
+
+        <div class="footer">
+            <p>Made with 💜 for music lovers</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/Resh2/pixel-music-player" class="github-link">View on GitHub</a>
+            </p>
+        </div>
     </div>
-
-    <audio id="audioPlayer"></audio>
-
-    <script src="js/player.js"></script>
 </body>
 </html>
