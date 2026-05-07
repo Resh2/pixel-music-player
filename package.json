@@ -1,0 +1,29 @@
+{
+  "name": "pixel-music-player",
+  "version": "1.0.0",
+  "description": "A retro-inspired, pixel-art styled music player with nostalgic 8-bit aesthetic",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "music player",
+    "retro",
+    "pixel art",
+    "8-bit",
+    "web app",
+    "audio",
+    "playlist"
+  ],
+  "author": "Resh2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Resh2/pixel-music-player.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Resh2/pixel-music-player/issues"
+  },
+  "homepage": "https://github.com/Resh2/pixel-music-player#readme"
+}
